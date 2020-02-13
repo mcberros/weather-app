@@ -3,6 +3,7 @@ const express = require('express')
 const hbs = require('hbs')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
+const { port } = require('./utils/config')
 
 const app = express()
 const publicDirectory = path.join(__dirname, '../public')
@@ -62,12 +63,6 @@ app.get('/weather', (req, res) => {
       })
     })
   })
-
-  // res.send({
-  //   forecast: result.forecast,
-  //   location: result.location,
-  //   address: req.query.address
-  // })
 })
 
 app.get('/help/*', (req, res) => {
@@ -86,6 +81,6 @@ app.get('*', (req, res) => {
   })
 })
 
-app.listen(3000, () => {
-  console.log('Server up')
+app.listen(port, () => {
+  console.log(`Server up in port ${port}`)
 })
